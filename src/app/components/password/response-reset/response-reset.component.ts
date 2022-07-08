@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SnotifyService } from 'ng-snotify';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -24,7 +23,6 @@ export class ResponseResetComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     private router: Router,
-    private notify: SnotifyService,
 
 
   ) {
@@ -42,18 +40,8 @@ export class ResponseResetComponent implements OnInit {
     );
   }
   handleResponse(data: any) {
-    this.notify.confirm('Done, now login with your new password!', {
-      buttons: [
-        {
-          text: 'OK', action: (toster) => {
-            this.router.navigateByUrl('/login'),
-              this.notify.remove(toster.id)
-
-          }
-        },
-      ]
-    });
-    this.router.navigateByUrl('/login')
+   
+    this.router.navigateByUrl('/login');
   }
   handleError(error: any) {
     this.error = error.error.errors;
